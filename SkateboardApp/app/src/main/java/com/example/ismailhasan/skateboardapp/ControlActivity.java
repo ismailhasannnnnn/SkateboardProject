@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -39,7 +40,7 @@ public class ControlActivity extends AppCompatActivity {
         btnForward.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View v){
-                forward(v);
+                forward();
             }
 
         });
@@ -47,26 +48,45 @@ public class ControlActivity extends AppCompatActivity {
         btnBackward.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View v){
-                backward(v);
+                backward();
             }
 
         });
 
+        new ConnectBT().execute();
+
     }
 
-    public void forward(View v){
-        try{
-            btSocket.getOutputStream().write("TO".toString().getBytes());
-        }catch(IOException e){
-            easyToast("Error.");
+    public void forward(){
+        if (btSocket!=null)
+        {
+            try
+            {
+//                btSocket.getOutputStream().write("TO".getBytes());
+                btSocket.getOutputStream().write("TO".getBytes());
+                TextView dataLabel = (TextView)findViewById(R.id.dataLabel);
+//                dataLabel.setText(btSocket.getInputStream().read());
+            }
+            catch (IOException e)
+            {
+                easyToast("Error");
+            }
         }
     }
 
-    public void backward(View v){
-        try{
-            btSocket.getOutputStream().write("TF".toString().getBytes());
-        }catch (IOException e){
-            easyToast("Error");
+    public void backward(){
+        if (btSocket!=null)
+        {
+            try
+            {
+                btSocket.getOutputStream().write("TF".getBytes());
+                TextView dataLabel = (TextView)findViewById(R.id.dataLabel);
+//                dataLabel.setText(btSocket.getInputStream().read());
+            }
+            catch (IOException e)
+            {
+                easyToast("Error");
+            }
         }
     }
 

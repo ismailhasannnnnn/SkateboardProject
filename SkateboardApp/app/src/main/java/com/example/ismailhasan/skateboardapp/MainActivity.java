@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     Set<BluetoothDevice> pairedDevices;
     public static String EXTRA_ADDRESS = "device_address";
     ArrayList list = new ArrayList();
-    boolean btPossible = false;
+    boolean btPossible = true;
 
 
     @Override
