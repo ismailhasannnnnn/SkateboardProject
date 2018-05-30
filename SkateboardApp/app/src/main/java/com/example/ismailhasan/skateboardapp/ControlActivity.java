@@ -63,9 +63,15 @@ public class ControlActivity extends AppCompatActivity {
             try
             {
 //                btSocket.getOutputStream().write("TO".getBytes());
-                btSocket.getOutputStream().write("TO".getBytes());
+                btSocket.getOutputStream().write("TO".toString().getBytes());
                 TextView dataLabel = (TextView)findViewById(R.id.dataLabel);
-//                dataLabel.setText(btSocket.getInputStream().read());
+//                dataLabel.setText();
+//                if(btSocket.isConnected()){
+//                    dataLabel.setText("True");
+//                }else{
+//                    dataLabel.setText("False");
+//                }
+
             }
             catch (IOException e)
             {
@@ -79,7 +85,7 @@ public class ControlActivity extends AppCompatActivity {
         {
             try
             {
-                btSocket.getOutputStream().write("TF".getBytes());
+                btSocket.getOutputStream().write("TF".toString().getBytes());
                 TextView dataLabel = (TextView)findViewById(R.id.dataLabel);
 //                dataLabel.setText(btSocket.getInputStream().read());
             }
